@@ -1,0 +1,24 @@
+:root {
+  // background
+  --white-background: #ffffff;
+  --primary-background: #dadada;
+  --secondry-background: #eeeeee;
+
+  --brand-color: rgb(17 94 89);
+
+  --high-priority: red;
+  --medium-priority: orange;
+  --low-priority: blue;
+
+  --text-default: #131313;
+  --text-inverse: #fff;
+}
+
+[data-theme="dark"] {
+  // background
+  --primary-background: #242424;
+  --white-background: #181b1f;
+  --secondry-background: #282828;
+
+  --text-inverse: #131313;
+}
