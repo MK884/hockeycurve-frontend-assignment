@@ -3,6 +3,7 @@ import Dialog from "./Dialog";
 import styles from "../styles/form.module.scss";
 import DropDow from "./DropDow";
 import { TaskContext } from "../store";
+import { nanoid } from "nanoid";
 
 const priorityOptions: priorityOptions[] = [
   {
@@ -20,10 +21,11 @@ const priorityOptions: priorityOptions[] = [
 ];
 
 const Form = React.forwardRef<HTMLDialogElement, FormProps>(
-  ({ task, onClose }, ref) => {
+  ({ task, onClose, isNewTask = true }, ref) => {
     const [error, setError] = React.useState<string>();
 
     const [taskData, setTaskData] = React.useState<Task>({
+      id: task?.id || nanoid(4),
       dueDate: task?.dueDate || "",
       isCompleted: task?.isCompleted || false,
       name: task?.name || "",
@@ -31,11 +33,7 @@ const Form = React.forwardRef<HTMLDialogElement, FormProps>(
       description: task?.description || "",
     });
 
-    const taskContext = React.useContext(TaskContext);
-
-    const isNewTask = task?.name !== "";
-    console.log("new",isNewTask);
-    
+    const { dispatch, state } = React.useContext(TaskContext);
 
     const handleChange = (
       e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -54,9 +52,16 @@ const Form = React.forwardRef<HTMLDialogElement, FormProps>(
         name: "",
         priority: "",
         description: "",
+        id: "",
       });
 
       onClose && onClose();
+    };
+
+    const isDateValid = (date: string) => {
+      const now = new Date();
+      const inputDate = new Date(date);
+      return inputDate >= now;
     };
 
     const isEmpty =
@@ -72,38 +77,38 @@ const Form = React.forwardRef<HTMLDialogElement, FormProps>(
         return null;
       }
 
-      if (taskContext) {
-        const { dispatch, state } = taskContext;
+      const isNameSame = state.tasks?.filter(
+        (task) => task.name === taskData?.name
+      );
 
-        const isNameSame = state.tasks?.filter(
-          (task) => task.name === taskData?.name
-        );
-
-        if (isNameSame.length) {
-          setError("This Title already taken please try with different title");
-          return null;
-        }
-
-        dispatch({
-          type: "ADD_TASK",
-          payload: {
-            tasks: [taskData],
-          },
-        });
-        emptyFormState();
+      if (isNameSame.length) {
+        setError("This Title already taken please try with different title");
+        return null;
       }
+
+      if (!isDateValid(taskData.dueDate)) {
+        setError("Date and time must be today or a future date");
+        return null;
+      }
+
+      dispatch({
+        type: "ADD_TASK",
+        payload: {
+          tasks: [taskData],
+        },
+      });
+      emptyFormState();
     };
 
     // Delete Task
     const deleteTask = () => {
-      if (taskContext) {
-        const { dispatch } = taskContext;
+      dispatch({
+        type: "DELETE_TASK",
+        payload: { id: taskData.id },
+      });
 
-        dispatch({
-          type: "DELETE_TASK",
-          payload: { taskName: taskData?.name },
-        });
-      }
+      console.log("Task deleted");
+      onClose && onClose();
     };
 
     // Edit Task
@@ -114,42 +119,31 @@ const Form = React.forwardRef<HTMLDialogElement, FormProps>(
         return null;
       }
 
-      if (taskContext) {
-        const { dispatch, state } = taskContext;
-
-        const isNameSame = state.tasks?.filter(
-          (task) => task.name === taskData?.name
-        );
-
-        if (isNameSame.length) {
-          setError("This Title already taken please try with different title");
-          return null;
-        }
-
-        dispatch({
-          type: "EDIT_TASK",
-          payload: {
-            taskName: taskData.name,
-            updatedTask: taskData,
-          },
-        });
-        emptyFormState();
+      if (!isDateValid(taskData.dueDate)) {
+        setError("Date and time must be today or a future date");
+        return null;
       }
+
+      dispatch({
+        type: "EDIT_TASK",
+        payload: {
+          id: taskData.id,
+          updatedTask: taskData,
+        },
+      });
+      onClose && onClose();
     };
 
     // mark completed task
 
     const markComplete = () => {
-      if (taskContext) {
-        const { dispatch, state } = taskContext;
-
-        dispatch({
-          type: "MARK_COMPLETED",
-          payload: {
-            taskName: taskData.name,
-          },
-        });
-      }
+      dispatch({
+        type: "MARK_COMPLETED",
+        payload: {
+          id: taskData.id,
+        },
+      });
+      onClose && onClose();
     };
 
     return (
@@ -211,7 +205,7 @@ const Form = React.forwardRef<HTMLDialogElement, FormProps>(
                 >
                   {isNewTask ? "Add Task" : "Save Changes"}
                 </button>
-                {!isNewTask && (
+                {!isNewTask && !taskData.isCompleted && (
                   <button className={styles["btn"]} onClick={markComplete}>
                     Marsk as done
                   </button>
@@ -223,7 +217,6 @@ const Form = React.forwardRef<HTMLDialogElement, FormProps>(
             </footer>
           </>
         </Dialog>
-        
       </>
     );
   }

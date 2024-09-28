@@ -2,7 +2,7 @@
 
 ## Task List
 
-- [ ] **Milestone 1 (Basic - Must Complete)**
+- [x] **Milestone 1 (Basic - Must Complete)**
     - [x] Task List Display:
         * Create a simple list to display tasks with title and description.
         * Implement basic add and delete functionality for tasks.
@@ -14,19 +14,19 @@
     - [x] Styling:
         * Apply basic CSS to make the application presentable.
         * Addition of Accordion is not compulsory. User can directly click on the task and go the the Edit popup.
-- [ ] **Milestone 2 (Intermediate)**
-    - [ ] Enhanced Task Properties:
+- [x] **Milestone 2 (Intermediate)**
+    - [x] Enhanced Task Properties:
         * Add due date and priority (Low, Medium, High) to tasks.
         * Implement edit functionality for existing tasks.
-    - [ ] Advanced Validation:
+    - [x] Advanced Validation:
         * Ensure task titles are unique.
         * Validate that due dates are today or in the future.
-    - [ ] Task Interactions:
+    - [x] Task Interactions:
         * Add a &quot;Completed/ Done task&quot; feature with visual distinction for completed tasks.
         * Implement a basic search functionality to filter tasks by title.
-    - [ ] Improved State Management:
+    - [x] Improved State Management:
         * Use useReducer or Context API for more complex state management.
-    - [ ] Responsive Design:
+    - [x] Responsive Design:
         * Ensure the application works well on both desktop and mobile devices.
 - [ ] **Good to Have (Advanced)**
     - [ ] Performance Optimization:

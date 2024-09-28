@@ -3,12 +3,15 @@ import Form from "./components/Form";
 import Tabs from "./components/Tabs";
 import styles from "./styles/main.module.scss";
 import React from "react";
+import { RiArrowUpDownLine } from "react-icons/ri";
+
 
 export const tabs: tabs[] = ['all', 'high', 'medium', 'low', 'done'];
 
 function App() {  
 
   const dialogRef = React.useRef<HTMLDialogElement>(null)
+  const [query, setQuery] = React.useState<string>('')
 
   const closeModal = () => {
     dialogRef?.current && dialogRef.current.close();
@@ -34,8 +37,14 @@ function App() {
                 </div>
                 <p>Add New Task</p>
               </div>
+              <div className={styles['search']}>
+                <input type="text" placeholder="Search Task..." value={query} onChange={(e)=>setQuery(e.target.value)}/>
+              </div>
+              <div className={styles['sort']}>
+                <RiArrowUpDownLine size={20}/>
+              </div>
             </div>
-            <Tabs data={tabs} />
+            <Tabs data={tabs} query={query}/>
           </div>
         </div>
         <Form ref={dialogRef} onClose={closeModal} />

@@ -3,15 +3,19 @@
   --layer-background: #ffffff;
   --primary-background: #dadada;
   --secondry-background: #eeeeee;
+  --background-success-weak: #E8F3EB;
+  --background-error-weak: #FCEEEF;
 
   --brand-color: rgb(17 94 89);
 
-  --high-priority: red;
-  --medium-priority: orange;
-  --low-priority: blue;
+  --high-priority: rgba(150, 31, 31, 0.781);
+  --medium-priority: rgba(201, 142, 34, 0.89);
+  --low-priority: rgb(32, 32, 134);
 
   --text-default: #131313;
   --text-inverse: #fff;
+  --text-success: #1E823B;
+  --text-danger: #D72D39;
 }
 
 [data-theme="dark"] {

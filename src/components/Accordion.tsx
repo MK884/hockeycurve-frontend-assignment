@@ -7,10 +7,10 @@ import { TaskContext } from "../store";
 import Form from "./Form";
 
 function Accordion(props: Task) {
-  const { name, description, dueDate, priority } = props;
+  const { name, description, dueDate, priority, id, isCompleted } = props;
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
-  const taskContext = React.useContext(TaskContext);
+  const { dispatch } = React.useContext(TaskContext);
 
   const dialogRef = React.useRef<HTMLDialogElement>(null);
 
@@ -24,15 +24,12 @@ function Accordion(props: Task) {
 
   // Delete Task
   const deleteTask = () => {
-    if (taskContext) {
-      const { dispatch } = taskContext;
-
-      dispatch({
-        type: "DELETE_TASK",
-        payload: { taskName: name },
-      });
-    }
+    dispatch({
+      type: "DELETE_TASK",
+      payload: { id: id },
+    });
   };
+
   return (
     <div className={styles["box"]}>
       <div className={styles["head"]} onClick={() => setIsOpen(!isOpen)}>
@@ -71,7 +68,7 @@ function Accordion(props: Task) {
             <p>{description}</p>
           </div>
           <div className={styles["due__date"]}>
-            <h6>Due Date:</h6>
+            <h6>Due Date: <span className={styles[isCompleted ? 'completed' : 'pending']}>{isCompleted ? 'COMPLETED': 'PENDING'}</span></h6>
             <p>{dueDate}</p>
           </div>
           <div className={styles["actions"]}>
@@ -80,7 +77,12 @@ function Accordion(props: Task) {
           </div>
         </div>
       )}
-      <Form ref={dialogRef} onClose={closeModal} task={props}/>
+      <Form
+        ref={dialogRef}
+        onClose={closeModal}
+        task={props}
+        isNewTask={false}
+      />
     </div>
   );
 }

@@ -33,6 +33,18 @@
       color: var(--brand-color);
       font-size: 18px;
       font-weight: bolder;
+      span{
+        font-size: 10px;
+        padding: 10px 18px;
+        &.completed{
+          color: var(--text-success);
+          background-color: var(--background-success-weak);
+        }
+        &.pending{
+          color: var(--text-danger);
+          background-color: var(--background-danger-weak);
+        }
+      }
     }
     .actions {
       display: flex;

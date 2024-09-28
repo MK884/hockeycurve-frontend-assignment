@@ -2,6 +2,7 @@ type priority = "high" | "medium" | "low";
 type tabs = "all" | "done" | priority;
 
 interface Task {
+  id: string;
   name: string;
   description?: string;
   dueDate: string;
@@ -20,6 +21,7 @@ interface DialogProps {
 
 interface FormProps {
   task?: Task;
+  isNewTask?:boolean;
   onClose?: () => void;
 }
 
@@ -40,6 +42,6 @@ type State = {
 
 type Action =
   | { type: "ADD_TASK"; payload: { tasks: Task[] } }
-  | { type: "EDIT_TASK"; payload: { taskName: string; updatedTask: Partial<Task> }}
-  | { type: "DELETE_TASK"; payload: { taskName: string } }
-  | { type: "MARK_COMPLETED"; payload: { taskName: string } };
+  | { type: "EDIT_TASK"; payload: { id: string; updatedTask: Partial<Task> }}
+  | { type: "DELETE_TASK"; payload: { id: string } }
+  | { type: "MARK_COMPLETED"; payload: { id: string } };
