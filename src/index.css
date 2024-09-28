@@ -73,3 +73,8 @@ button:focus-visible {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   outline: none !important;
 }
+
+::-webkit-scrollbar{
+  width: 0;
+  scroll-behavior: smooth;
+}

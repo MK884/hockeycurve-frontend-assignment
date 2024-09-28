@@ -3,7 +3,7 @@
 ## Task List
 
 - [ ] **Milestone 1 (Basic - Must Complete)**
-    - [ ] Task List Display:
+    - [x] Task List Display:
         * Create a simple list to display tasks with title and description.
         * Implement basic add and delete functionality for tasks.
     - [ ] Task Form:

@@ -4,31 +4,7 @@ import { TiFolderOpen } from "react-icons/ti";
 import { TiPlus } from "react-icons/ti";
 import Tabs from "./components/Tabs";
 
-
-
-
-export const tabs: tabsProps[] = [
-  {
-    label: "all",
-    content: <>All</>,
-  },
-  {
-    label: "high",
-    content: <>High</>,
-  },
-  {
-    label: "medium",
-    content: <>Medium</>,
-  },
-  {
-    label: "low",
-    content: <>Low</>,
-  },
-  {
-    label: "done",
-    content: <>Done</>,
-  },
-];
+export const tabs: tabs[] = ['all', 'high', 'medium', 'low', 'done'];
 
 function App() {
   return (
@@ -47,10 +23,8 @@ function App() {
                 </div>
                 <p>Add New Task</p>
               </div>
-              
             </div>
-                <Tabs data={tabs}/>
-            
+            <Tabs data={tabs} />
           </div>
         </div>
       </div>

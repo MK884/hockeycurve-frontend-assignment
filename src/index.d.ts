@@ -1,10 +1,10 @@
-type tabs = 'all' | 'high' | 'medium' | 'low' | 'done';
+type priority = 'high' | 'medium' | 'low'
+type tabs = 'all' | 'done' | priority;
 
-interface tabsProps {
-    label: tabs;
-    content: React.ReactNode;
-}
 
-interface TabListProps {
-    data: tabsProps[];
+interface Task {
+    name: string;
+    description: string;
+    dueDate: string;
+    priority: priority;
 }

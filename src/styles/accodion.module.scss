@@ -1,0 +1,52 @@
+.box {
+  margin-block: 1rem;
+  .head {
+    padding: 10px 18px;
+    background-color: var(--primary-background);
+    display: flex;
+    gap: 1rem;
+    cursor: pointer;
+    .header {
+      flex: 1;
+      .title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .priority {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        h4 {
+          font-size: 20px;
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+  .body {
+    height: auto;
+    padding: 10px 18px;
+    padding-left: 4rem;
+    font-weight: 600;
+    h6 {
+      color: var(--brand-color);
+      font-size: 18px;
+      font-weight: bolder;
+    }
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      button {
+        background-color: var(--brand-color);
+        color: var(--text-inverse);
+        padding: 10px 50px;
+        outline: none;
+        border: none;
+        font-weight: bolder;
+        border-radius: 20px;
+      }
+    }
+  }
+}
