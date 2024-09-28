@@ -3,10 +3,36 @@ import styles from "../styles/accodion.module.scss";
 import { FaCaretRight } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
 import { priorityColor } from "../utils/constant";
+import { TaskContext } from "../store";
+import Form from "./Form";
 
-function Accordion({ name, description, dueDate, priority }: Task) {
+function Accordion(props: Task) {
+  const { name, description, dueDate, priority } = props;
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
+  const taskContext = React.useContext(TaskContext);
+
+  const dialogRef = React.useRef<HTMLDialogElement>(null);
+
+  const closeModal = () => {
+    dialogRef?.current && dialogRef.current.close();
+  };
+
+  const openModal = () => {
+    dialogRef?.current && dialogRef.current.showModal();
+  };
+
+  // Delete Task
+  const deleteTask = () => {
+    if (taskContext) {
+      const { dispatch } = taskContext;
+
+      dispatch({
+        type: "DELETE_TASK",
+        payload: { taskName: name },
+      });
+    }
+  };
   return (
     <div className={styles["box"]}>
       <div className={styles["head"]} onClick={() => setIsOpen(!isOpen)}>
@@ -24,6 +50,7 @@ function Accordion({ name, description, dueDate, priority }: Task) {
               <h4>{priority}</h4>
               <div
                 style={{
+                  // @ts-ignore
                   backgroundColor: priorityColor[priority],
                   height: "20px",
                   width: "20px",
@@ -48,11 +75,12 @@ function Accordion({ name, description, dueDate, priority }: Task) {
             <p>{dueDate}</p>
           </div>
           <div className={styles["actions"]}>
-            <button>Edit</button>
-            <button>Delete</button>
+            <button onClick={openModal}>Edit</button>
+            <button onClick={deleteTask}>Delete</button>
           </div>
         </div>
       )}
+      <Form ref={dialogRef} onClose={closeModal} task={props}/>
     </div>
   );
 }

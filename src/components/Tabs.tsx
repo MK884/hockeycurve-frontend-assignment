@@ -1,75 +1,30 @@
 import React from "react";
 import styles from "../styles/tabs.module.scss";
 import Accordion from "./Accordion";
-
-const task: Task[] = [
-  {
-    name: "Task 1",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa amet maiores sed? Debitis, magnam tempora? Cupiditate, totam ab. Eveniet fugit laborum ipsam quis eius optio perferendis nisi dolorem obcaecati hic quia non quidem, sit veritatis rerum ad ut cupiditate, vero quam nobis aut. Officiis non dolor voluptatibus explicabo consectetur beatae.",
-    dueDate: "01 Aug 2024 - 06:30 PM",
-    priority: "high",
-  },
-  {
-    name: "Task 2",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa amet maiores sed? Debitis, magnam tempora? Cupiditate, totam ab. Eveniet fugit laborum ipsam quis eius optio perferendis nisi dolorem obcaecati hic quia non quidem, sit veritatis rerum ad ut cupiditate, vero quam nobis aut. Officiis non dolor voluptatibus explicabo consectetur beatae.",
-    dueDate: "01 Aug 2024 - 06:30 PM",
-    priority: "low",
-  },
-  {
-    name: "Task 3",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa amet maiores sed? Debitis, magnam tempora? Cupiditate, totam ab. Eveniet fugit laborum ipsam quis eius optio perferendis nisi dolorem obcaecati hic quia non quidem, sit veritatis rerum ad ut cupiditate, vero quam nobis aut. Officiis non dolor voluptatibus explicabo consectetur beatae.",
-    dueDate: "01 Aug 2024 - 06:30 PM",
-    priority: "medium",
-  },
-  {
-    name: "Task 4",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa amet maiores sed? Debitis, magnam tempora? Cupiditate, totam ab. Eveniet fugit laborum ipsam quis eius optio perferendis nisi dolorem obcaecati hic quia non quidem, sit veritatis rerum ad ut cupiditate, vero quam nobis aut. Officiis non dolor voluptatibus explicabo consectetur beatae.",
-    dueDate: "01 Aug 2024 - 06:30 PM",
-    priority: "low",
-  },
-  {
-    name: "Task 5",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa amet maiores sed? Debitis, magnam tempora? Cupiditate, totam ab. Eveniet fugit laborum ipsam quis eius optio perferendis nisi dolorem obcaecati hic quia non quidem, sit veritatis rerum ad ut cupiditate, vero quam nobis aut. Officiis non dolor voluptatibus explicabo consectetur beatae.",
-    dueDate: "01 Aug 2024 - 06:30 PM",
-    priority: "high",
-  },
-  {
-    name: "Task 6",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa amet maiores sed? Debitis, magnam tempora? Cupiditate, totam ab. Eveniet fugit laborum ipsam quis eius optio perferendis nisi dolorem obcaecati hic quia non quidem, sit veritatis rerum ad ut cupiditate, vero quam nobis aut. Officiis non dolor voluptatibus explicabo consectetur beatae.",
-    dueDate: "01 Aug 2024 - 06:30 PM",
-    priority: "medium",
-  },
-  {
-    name: "Task 7",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa amet maiores sed? Debitis, magnam tempora? Cupiditate, totam ab. Eveniet fugit laborum ipsam quis eius optio perferendis nisi dolorem obcaecati hic quia non quidem, sit veritatis rerum ad ut cupiditate, vero quam nobis aut. Officiis non dolor voluptatibus explicabo consectetur beatae.",
-    dueDate: "01 Aug 2024 - 06:30 PM",
-    priority: "high",
-  },
-  {
-    name: "Task 8",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa amet maiores sed? Debitis, magnam tempora? Cupiditate, totam ab. Eveniet fugit laborum ipsam quis eius optio perferendis nisi dolorem obcaecati hic quia non quidem, sit veritatis rerum ad ut cupiditate, vero quam nobis aut. Officiis non dolor voluptatibus explicabo consectetur beatae.",
-    dueDate: "01 Aug 2024 - 06:30 PM",
-    priority: "low",
-  },
-];
+import { TaskContext } from "../store";
 
 function Tabs({ data }: { data: tabs[] }) {
   if (!data?.length) return null;
 
   const [activeTab, setActiveTab] = React.useState<tabs>("all");
 
-  const filterTasks =
-    activeTab === "all"
-      ? task
-      : task?.filter((item) => item.priority === activeTab);
+  const taskContext = React.useContext(TaskContext);
+
+
+  let filterTasks:Task[];
+
+  if(!taskContext){
+    filterTasks = [];
+  }else{
+
+    const { state, dispatch } = taskContext;  
+
+    filterTasks =
+      activeTab === "all"
+        ? state?.tasks : activeTab === 'done' ? state?.tasks?.filter((item) => item.isCompleted) :
+        state?.tasks?.filter((item) => item.priority === activeTab);
+  }
+
 
   return (
     <div className={styles["wrapper"]}>

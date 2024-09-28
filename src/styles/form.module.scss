@@ -16,6 +16,9 @@
   border: none;
   border-radius: 20px;
   cursor: pointer;
+  &:disabled{
+    opacity: .5;
+  }
 }
 
 .body {
@@ -46,4 +49,9 @@
   .btn {
     background-color: var(--brand-color);
   }
+}
+.error{
+  color: red;
+  font-size: small;
+  text-transform: capitalize;
 }

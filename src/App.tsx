@@ -10,7 +10,6 @@ function App() {
 
   const dialogRef = React.useRef<HTMLDialogElement>(null)
 
-
   const closeModal = () => {
     dialogRef?.current && dialogRef.current.close();
   }
@@ -39,7 +38,7 @@ function App() {
             <Tabs data={tabs} />
           </div>
         </div>
-        <Form ref={dialogRef} onClose={closeModal}/>
+        <Form ref={dialogRef} onClose={closeModal} />
       </div>
     </>
   );

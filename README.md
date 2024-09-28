@@ -6,12 +6,12 @@
     - [x] Task List Display:
         * Create a simple list to display tasks with title and description.
         * Implement basic add and delete functionality for tasks.
-    - [ ] Task Form:
+    - [x] Task Form:
         * Create a form to add new tasks with title and description fields.
         * Implement basic form validation (e.g., title and description cannot be empty).
-    - [ ] State Management:
+    - [x] State Management:
         * Use React&#39;s useState hook to manage the list of tasks.
-    - [ ] Styling:
+    - [x] Styling:
         * Apply basic CSS to make the application presentable.
         * Addition of Accordion is not compulsory. User can directly click on the task and go the the Edit popup.
 - [ ] **Milestone 2 (Intermediate)**

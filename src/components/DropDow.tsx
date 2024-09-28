@@ -6,6 +6,12 @@ import { FaCaretUp } from "react-icons/fa";
 function DropDow({ onChange, options, value }: DropDowProps) {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
+
+  const selectOption = (option:priority) => {
+    onChange(option);
+    setIsOpen(false)
+  }
+
   return (
     <>
       <div className={styles["select"]}>
@@ -14,7 +20,7 @@ function DropDow({ onChange, options, value }: DropDowProps) {
           onClick={() => setIsOpen(!isOpen)}
           style={{ borderColor: isOpen ? "var(--brand-color)" : "" }}
         >
-          <p>{value}</p>
+          <p>{value || "Select Priority"}</p>
           {isOpen ? (
             <FaCaretUp size={26} color="var(--brand-color)" />
           ) : (
@@ -23,7 +29,7 @@ function DropDow({ onChange, options, value }: DropDowProps) {
         </div>
         {isOpen && <div className={styles["body"]}>
           {options?.map((option) => (
-            <div className={styles['option']} onClick={()=>onChange(option.priority)}>
+            <div className={`${styles['option']} ${option.priority === value ? styles['selected'] : ''}`} key={option.priority} onClick={()=>selectOption(option.priority)}>
                 <p>{option.priority}</p>
                 <div style={{ height:'20px', aspectRatio:1, backgroundColor: option.color, borderRadius:'50%'}}/>
             </div>

@@ -3,9 +3,10 @@ type tabs = "all" | "done" | priority;
 
 interface Task {
   name: string;
-  description: string;
+  description?: string;
   dueDate: string;
-  priority: priority;
+  priority: priority | string;
+  isCompleted?: boolean;
 }
 
 interface DialogProps {
@@ -13,6 +14,7 @@ interface DialogProps {
   body: React.ReactElement;
   footer: React.ReactElement;
   style?: React.CSSProperties;
+  children: React.ReactNode;
   [key: string]: any;
 }
 
@@ -21,14 +23,23 @@ interface FormProps {
   onClose?: () => void;
 }
 
-
 interface priorityOptions {
   priority: priority;
   color: string;
 }
 
 interface DropDowProps {
-  options: priorityOptions[]; 
-  onChange: (option:string)=>void;
-  value:string;
+  options: priorityOptions[];
+  onChange: (option: string) => any;
+  value: string;
 }
+
+type State = {
+  tasks: Task[];
+};
+
+type Action =
+  | { type: "ADD_TASK"; payload: { tasks: Task[] } }
+  | { type: "EDIT_TASK"; payload: { taskName: string; updatedTask: Partial<Task> }}
+  | { type: "DELETE_TASK"; payload: { taskName: string } }
+  | { type: "MARK_COMPLETED"; payload: { taskName: string } };
