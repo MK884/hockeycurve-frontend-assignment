@@ -1,0 +1,49 @@
+@import './color';
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30rem;
+  h4 {
+    font-size: 24px;
+  }
+}
+.btn {
+  padding: 10px 36px;
+  font-weight: 600;
+  color: var(--text-inverse);
+  background-color: red;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  padding-block: 1rem;
+  gap: 1rem;
+  .input {
+    background-color: var(--layer-background);
+    outline: none;
+    border: 2px solid rgb(209 213 219);
+    padding: 10px 12px;
+    border-radius: 8px;
+    &:focus {
+      border-color: var(--brand-color);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  .btn {
+    background-color: var(--brand-color);
+  }
+}

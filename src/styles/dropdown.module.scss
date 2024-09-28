@@ -1,0 +1,34 @@
+@import './color';
+
+.select{
+    .header{
+        background-color: var(--layer-background);
+        outline: none;
+        border: 2px solid rgb(209 213 219);
+        padding: 6px 12px;
+        border-radius: 8px;
+        display: flex;
+        font-size: 14px;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .body{
+        background-color: var(--layer-background);
+        outline: none;
+        border: 2px solid rgb(209 213 219);
+        border-radius: 8px;
+        .option{
+            padding: 6px 12px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+    p{
+        text-transform: capitalize;
+        font-weight: 400;
+        font-size: 14px;
+    }
+}
