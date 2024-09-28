@@ -5,6 +5,7 @@ import { FaCaretDown } from "react-icons/fa";
 import { priorityColor } from "../utils/constant";
 import { TaskContext } from "../store";
 import Form from "./Form";
+import { formateDate } from "../utils";
 
 function Accordion(props: Task) {
   const { name, description, dueDate, priority, id, isCompleted } = props;
@@ -27,6 +28,23 @@ function Accordion(props: Task) {
     dispatch({
       type: "DELETE_TASK",
       payload: { id: id },
+    });
+  };
+
+  const snoozeTask = (snoozeDelay: number) => {
+    const newDueDate = new Date(new Date(dueDate).getTime() + snoozeDelay);
+
+    const formatedNewDate = formateDate({
+      date: String(newDueDate),
+      isHeader: false,
+    });
+
+    dispatch({
+      type: "SNOOZE_TASK",
+      payload: {
+        id: id,
+        newDueDate: formatedNewDate,
+      },
     });
   };
 
@@ -57,7 +75,7 @@ function Accordion(props: Task) {
             </div>
           </div>
           <div>
-            <p>Due Date: {dueDate?.split(" ")?.slice(0, 3)?.join(" ")}</p>
+            <p>Due Date: {formateDate({ date: dueDate })}</p>
           </div>
         </div>
       </div>
@@ -68,8 +86,21 @@ function Accordion(props: Task) {
             <p>{description}</p>
           </div>
           <div className={styles["due__date"]}>
-            <h6>Due Date: <span className={styles[isCompleted ? 'completed' : 'pending']}>{isCompleted ? 'COMPLETED': 'PENDING'}</span></h6>
-            <p>{dueDate}</p>
+            <h6>
+              Due Date:{" "}
+              <span className={styles[isCompleted ? "completed" : "pending"]}>
+                {isCompleted ? "COMPLETED" : "PENDING"}
+              </span>
+            </h6>
+            <p>
+              {formateDate({ date: dueDate, isHeader: false })}{" "}
+              <p
+                onClick={() => snoozeTask(4 * 60 * 60 * 1000)}
+                className={styles["snooze"]}
+              >
+                Snooze by 4 hours
+              </p>{" "}
+            </p>
           </div>
           <div className={styles["actions"]}>
             <button onClick={openModal}>Edit</button>

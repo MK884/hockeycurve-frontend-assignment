@@ -3,19 +3,26 @@ import styles from "../styles/tabs.module.scss";
 import Accordion from "./Accordion";
 import { TaskContext } from "../store";
 
-function Tabs({ data, query }: { data: tabs[], query: string}) {
+function Tabs({ data, query }: { data: tabs[]; query: string }) {
   if (!data?.length) return null;
 
   const [activeTab, setActiveTab] = React.useState<tabs>("all");
 
   const { state } = React.useContext(TaskContext);
 
+  const filterByName = (tasks: Task[]) =>
+    tasks?.filter((task) =>
+      task.name?.toLowerCase().includes(query.toLowerCase())
+    );
+
   const filterTasks =
     activeTab === "all"
-      ? state?.tasks?.filter(task => task.name?.toLowerCase().includes(query.toLowerCase()))
+      ? filterByName(state?.tasks)
       : activeTab === "done"
-      ? state?.tasks?.filter((item) => item.isCompleted).filter(task => task.name?.toLowerCase().includes(query.toLowerCase()))
-      : state?.tasks?.filter((item) => item.priority === activeTab).filter(task => task.name?.toLowerCase().includes(query.toLowerCase()));
+      ? filterByName(state?.tasks?.filter((item) => item.isCompleted))
+      : filterByName(
+          state?.tasks?.filter((item) => item.priority === activeTab)
+        );
 
   return (
     <div className={styles["wrapper"]}>

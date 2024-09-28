@@ -1,25 +1,36 @@
+import React from "react";
+import { BiSort } from "react-icons/bi";
 import { TiFolderOpen, TiPlus } from "react-icons/ti";
 import Form from "./components/Form";
 import Tabs from "./components/Tabs";
 import styles from "./styles/main.module.scss";
-import React from "react";
-import { RiArrowUpDownLine } from "react-icons/ri";
+import { TaskContext } from "./store";
+import { tabs } from "./utils/constant";
+import { sortByPriorityAndDueDate } from "./utils";
 
-
-export const tabs: tabs[] = ['all', 'high', 'medium', 'low', 'done'];
-
-function App() {  
-
-  const dialogRef = React.useRef<HTMLDialogElement>(null)
-  const [query, setQuery] = React.useState<string>('')
+function App() {
+  const dialogRef = React.useRef<HTMLDialogElement>(null);
+  const [query, setQuery] = React.useState<string>("");
 
   const closeModal = () => {
     dialogRef?.current && dialogRef.current.close();
-  }
+  };
 
   const openModal = () => {
-    dialogRef?.current && dialogRef.current.showModal()
-  }
+    dialogRef?.current && dialogRef.current.showModal();
+  };
+
+  const handleSorting = () => {
+    const { dispatch, state } = React.useContext(TaskContext);
+    const sortedTasks = sortByPriorityAndDueDate(state.tasks);
+    dispatch({
+      type: "ADD_TASK",
+      payload: {
+        isAppended: false,
+        tasks: sortedTasks || [],
+      },
+    });
+  };
 
   return (
     <>
@@ -37,14 +48,19 @@ function App() {
                 </div>
                 <p>Add New Task</p>
               </div>
-              <div className={styles['search']}>
-                <input type="text" placeholder="Search Task..." value={query} onChange={(e)=>setQuery(e.target.value)}/>
+              <div className={styles["search"]}>
+                <input
+                  type="text"
+                  placeholder="Search Task..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
               </div>
-              <div className={styles['sort']}>
-                <RiArrowUpDownLine size={20}/>
+              <div className={styles["sort"]} onClick={handleSorting}>
+                <BiSort size={20} />
               </div>
             </div>
-            <Tabs data={tabs} query={query}/>
+            <Tabs data={tabs} query={query} />
           </div>
         </div>
         <Form ref={dialogRef} onClose={closeModal} />

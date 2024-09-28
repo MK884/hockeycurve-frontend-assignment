@@ -95,6 +95,7 @@ const Form = React.forwardRef<HTMLDialogElement, FormProps>(
         type: "ADD_TASK",
         payload: {
           tasks: [taskData],
+          isAppended: true,
         },
       });
       emptyFormState();
@@ -177,6 +178,7 @@ const Form = React.forwardRef<HTMLDialogElement, FormProps>(
                   name="dueDate"
                   onChange={handleChange}
                   className={styles["input"]}
+                  min={0}
                 />
                 <textarea
                   className={styles["input"]}

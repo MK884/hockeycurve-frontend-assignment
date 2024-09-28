@@ -61,5 +61,11 @@
         cursor: pointer;
       }
     }
+    .snooze{
+      font-size: smaller;
+      cursor: pointer;
+      text-decoration: underline;
+      color: var(--branc-color);
+    }
   }
 }

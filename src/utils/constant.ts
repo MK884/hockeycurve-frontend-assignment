@@ -5,3 +5,10 @@ export const priorityColor = {
 }  
 
 
+export const tabs: tabs[] = ["all", "high", "medium", "low", "done"];
+
+export const taskPriorityLevels: { [key: string]: number } = {
+  high: 1,
+  medium: 2,
+  low: 3,
+};

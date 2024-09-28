@@ -32,14 +32,14 @@
     - [ ] Performance Optimization:
         * Implement virtualization for the task list to handle large numbers of tasks.
         * Use React.memo() and useCallback() to optimize re-renders.
-    - [ ] Advanced Features:
+    - [x] Advanced Features:
         * Implement a &quot;snooze&quot; feature to postpone due dates.
         * Add a &quot;priority sort&quot; function to arrange tasks by priority and due date.
         * Addition of Accordion as shown in the UI
     - [ ] UI/UX Enhancements:
         * Create a dark mode toggle with smooth transition.
         * Implement drag-and-drop functionality to reorder tasks.
-    - [ ] Data Persistence:
+    - [x] Data Persistence:
         * Use localStorage to save tasks between page reloads.
     - [ ] Error Handling:
         * Implement error boundaries and display user-friendly error messages.

@@ -41,7 +41,8 @@ type State = {
 };
 
 type Action =
-  | { type: "ADD_TASK"; payload: { tasks: Task[] } }
+  | { type: "ADD_TASK"; payload: { tasks: Task[], isAppended?:boolean } }
   | { type: "EDIT_TASK"; payload: { id: string; updatedTask: Partial<Task> }}
   | { type: "DELETE_TASK"; payload: { id: string } }
-  | { type: "MARK_COMPLETED"; payload: { id: string } };
+  | { type: "MARK_COMPLETED"; payload: { id: string } }
+  | { type: "SNOOZE_TASK"; payload: { id: string, newDueDate:string } };
