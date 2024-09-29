@@ -1,9 +1,11 @@
 @import './color';
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 30rem;
+  color: var(--text-default);
   h4 {
     font-size: 24px;
   }
@@ -27,13 +29,14 @@
   padding-block: 1rem;
   gap: 1rem;
   .input {
+    color: var(--text-default);
     background-color: var(--layer-background);
     outline: none;
-    border: 2px solid rgb(209 213 219);
+    border: none;
     padding: 10px 12px;
     border-radius: 8px;
     &:focus {
-      border-color: var(--brand-color);
+      border: 2px solid var(--brand-color);
     }
   }
 

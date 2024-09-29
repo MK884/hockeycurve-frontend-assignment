@@ -18,7 +18,7 @@ function DropDow({ onChange, options, value }: DropDowProps) {
         <div
           className={styles["header"]}
           onClick={() => setIsOpen(!isOpen)}
-          style={{ borderColor: isOpen ? "var(--brand-color)" : "" }}
+          style={{ border: isOpen ? "2px solid var(--brand-color)" : "" }}
         >
           <p>{value || "Select Priority"}</p>
           {isOpen ? (

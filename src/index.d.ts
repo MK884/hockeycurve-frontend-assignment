@@ -46,3 +46,12 @@ type Action =
   | { type: "DELETE_TASK"; payload: { id: string } }
   | { type: "MARK_COMPLETED"; payload: { id: string } }
   | { type: "SNOOZE_TASK"; payload: { id: string, newDueDate:string } };
+
+
+interface SwitchProps {
+    styles?: React.CSSProperties;
+    id?: string;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    isChecked?: boolean;
+    [key:string]:any
+}

@@ -4,18 +4,20 @@
     .header{
         background-color: var(--layer-background);
         outline: none;
-        border: 2px solid rgb(209 213 219);
+        border: none;
         padding: 6px 12px;
         border-radius: 8px;
         display: flex;
         font-size: 14px;
         align-items: center;
         justify-content: space-between;
+        color: var(--text-default);
     }
     .body{
         background-color: var(--layer-background);
         outline: none;
-        border: 2px solid rgb(209 213 219);
+        border: none;
+        color: var(--text-default);
         border-radius: 8px;
         margin-top: 10px;
         .option{

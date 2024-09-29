@@ -1,6 +1,7 @@
 :root {
   // background
   --layer-background: #ffffff;
+  --inverse-background: #181b1f;
   --primary-background: #dadada;
   --secondry-background: #eeeeee;
   --background-success-weak: #E8F3EB;
@@ -16,13 +17,26 @@
   --text-inverse: #fff;
   --text-success: #1E823B;
   --text-danger: #D72D39;
+
+  --switch-tab: #ffffff;
+  --switch-background-off: #ddd;
+  --switch-background-on: #4368E3;
 }
 
 [data-theme="dark"] {
   // background
   --primary-background: #242424;
-  --white-background: #181b1f;
+  --layer-background: #181b1f;
   --secondry-background: #282828;
+  --inverse-background: #ffffff;
+  --background-success-weak: #05200B;
+  --background-error-weak: #390809;
+
 
   --text-inverse: #131313;
+  --text-default: #fff;
+
+  --switch-tab: #2B3036;
+  // --switch-background-off: #121518;
+  --switch-background-on: var(--brand-color);
 }

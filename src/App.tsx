@@ -7,6 +7,7 @@ import styles from "./styles/main.module.scss";
 import { TaskContext } from "./store";
 import { tabs } from "./utils/constant";
 import { sortByPriorityAndDueDate } from "./utils";
+import ThemeSwitch from "./components/Switch";
 
 function App() {
   const dialogRef = React.useRef<HTMLDialogElement>(null);
@@ -36,9 +37,12 @@ function App() {
     <>
       <div className={styles["main"]}>
         <div className={styles["wrapper"]}>
-          <div className={styles["heading"]}>
-            <TiFolderOpen size={34} />
-            <h4>Task List View</h4>
+          <div className={styles['top__bar']}>
+            <div className={styles["heading"]}>
+              <TiFolderOpen size={34} />
+              <h4>Task List View</h4>
+            </div>
+            <ThemeSwitch />
           </div>
           <div className={styles["task__list_view"]}>
             <div className={styles["header"]}>
@@ -57,7 +61,7 @@ function App() {
                 />
               </div>
               <div className={styles["sort"]} onClick={handleSorting}>
-                <BiSort size={20} />
+                <BiSort size={20} color="var(--text-default)"/>
               </div>
             </div>
             <Tabs data={tabs} query={query} />

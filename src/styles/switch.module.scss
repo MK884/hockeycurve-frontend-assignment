@@ -1,0 +1,30 @@
+@import './color';
+
+.switch {
+   height: 24px;
+   width: 48px;
+    appearance: none;
+    outline: none;
+    display: inline-block;
+    background-color: var(--switch-background-off);
+    position: relative;
+    cursor: pointer;
+    border-radius: 28px;
+    &::after {
+        content: '';
+        position: absolute;
+        height: 18px;
+        aspect-ratio: 1;
+        background-color: var(--switch-tab);
+        top: 3px;
+        left: 3.5px;
+        border-radius: 50%;
+        transition: transform 0.3s ease-in-out;
+    }
+    &:checked {
+        &::after {
+            transform: translateX(24px);
+        }
+        background-color: var(--switch-background-on);
+    }
+}

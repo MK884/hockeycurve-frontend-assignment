@@ -7,6 +7,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  .top__bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
   .wrapper {
     padding: 5rem;
     width: 100rem;
@@ -46,17 +52,19 @@
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
+        color: var(--text-default);
         .search{
           flex: 1;
           input{
             width: 100%;
             background-color: var(--layer-background);
             outline: none;
-            border: 2px solid rgb(209 213 219);
+            border: none;
             padding: 10px 12px;
             border-radius: 8px;
+            color: var(--text-defualt);
             &:focus {
-              border-color: var(--brand-color);
+              border:2px solid var(--brand-color);
             }
           }
         }
@@ -85,13 +93,23 @@
           .plus__icon {
             background-color: var(--layer-background);
             color: var(--text-default);
-            padding: 2px 4px;
-            padding-block: 2px;
+            height: 28px;
+            aspect-ratio: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border: none;
             border-radius: 50%;
           }
         }
       }
     }
+  }
+}
+
+
+@media screen and (max-width:768px){
+  .wrapper{
+      padding: 0;
   }
 }
