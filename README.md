@@ -1,5 +1,50 @@
 # This repository represents the assignment given by **HockeyCurve** team for **Frontend** role.
 
+## Tech-Stack
+
+1. Core:
+    ReactJs + TypeScript
+2. Stylings:
+    SCSS
+3. State Management: 
+    Context API + useReducer
+
+## Installation Guide
+
+### Prerequisites
+
+1. NodeJs
+2. Git
+
+### Setup
+
+1. Clone the repository on your machine 
+
+```bash
+    git clone https://github.com/MK884/hockeycurve-frontend-assignment.git
+```
+
+2. Install Dependencies
+
+ Go to your folder:
+
+```js
+    cd hockeycurve-frontend-assignment
+```
+
+Install Dependencies
+
+```js
+    npm install
+```
+
+3. Run project
+
+```js
+    npm run dev
+```
+
+
 ## Task List
 
 - [x] **Milestone 1 (Basic - Must Complete)**
